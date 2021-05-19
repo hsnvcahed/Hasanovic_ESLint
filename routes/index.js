@@ -13,7 +13,7 @@ const router = express.Router();
 router.get(
   '/cocktails',
   asyncHandler(async (req, res) => {
-    let result = await getCocktailPrice();
+    const result = await getCocktailPrice();
     res.status(result.status).json(result.data);
   }),
 );
@@ -21,7 +21,7 @@ router.get(
 router.get(
   '/cocktails/:name/zutaten',
   asyncHandler(async (req, res) => {
-    let result = await getCocktailIng(req.params.name);
+    const result = await getCocktailIng(req.params.name);
     res.status(result.status).json(result.data);
   }),
 );
@@ -29,7 +29,7 @@ router.get(
 router.get(
   '/cocktails/preis/:preis',
   asyncHandler(async (req, res) => {
-    let result = await getCocktailPriceLower(req.params.preis);
+    const result = await getCocktailPriceLower(req.params.preis);
     res.status(result.status).json(result.data);
   }),
 );
@@ -37,7 +37,7 @@ router.get(
 router.delete(
   '/cocktails/:name',
   asyncHandler(async (req, res) => {
-    let result = await removeCocktail(req.params.name);
+    const result = await removeCocktail(req.params.name);
     res.status(result.status).json(result.data);
   }),
 );
@@ -45,7 +45,7 @@ router.delete(
 router.post(
   '/cocktails',
   asyncHandler(async (req, res) => {
-    let result = await addCocktail(
+    const result = await addCocktail(
       req.body.cname,
       req.body.preis,
       req.body.zubereitung,
@@ -60,7 +60,7 @@ router.post(
 router.patch(
   '/cocktails/preis',
   asyncHandler(async (req, res) => {
-    let result = await updateCocktailPrice(req.body.cname, req.body.preis);
+    const result = await updateCocktailPrice(req.body.cname, req.body.preis);
     res.status(result.status).json(result.data);
   }),
 );

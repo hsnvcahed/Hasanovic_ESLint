@@ -1,4 +1,4 @@
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res) => {
   console.log('ERROR =======> ', err.message.red.inverse);
   res.status(500).json({
     code: 500,
@@ -10,7 +10,7 @@ const notFoundHandler = (req, res) => {
   console.log('Not Found =======> ', req.originalUrl.blue.inverse);
   res.status(404).json({
     code: 404,
-    data: `The requested resource could not be found on this server`,
+    data: 'The requested resource could not be found on this server',
   });
 };
 
