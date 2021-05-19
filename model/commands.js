@@ -28,4 +28,14 @@ async function getCocktailIng(cocktail) {
   };
 }
 
-module.exports = { getCocktailPrice, getCocktailIng };
+async function getCocktailPriceLower(preis) {
+  let { rows } = await db.query('select cname, preis from cocktail where preis <= $1 order by preis desc;', [preis]);
+
+  if (rows.length == 0) return { status: 404, data: 'Nicht gefunden' };
+  return {
+    status: 200,
+    data: rows,
+  };
+}
+
+module.exports = { getCocktailPrice, getCocktailIng, getCocktailPriceLower };
