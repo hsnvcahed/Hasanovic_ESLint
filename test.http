@@ -17,3 +17,11 @@ Content-Type: application/json
     "zgid": 1,
     "sgid": 1
 }
+###
+PATCH  http://127.0.0.1:3000/cocktails/preis
+Content-Type: application/json
+
+{
+    "cname": "Hit and Run",
+    "preis": 99.99
+}

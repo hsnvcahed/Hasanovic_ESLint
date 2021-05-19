@@ -6,6 +6,7 @@ const {
   getCocktailPriceLower,
   removeCocktail,
   addCocktail,
+  updateCocktailPrice,
 } = require('../model/commands');
 const router = express.Router();
 
@@ -52,6 +53,14 @@ router.post(
       req.body.zgid,
       req.body.sgid,
     );
+    res.status(result.status).json(result.data);
+  }),
+);
+
+router.patch(
+  '/cocktails/preis',
+  asyncHandler(async (req, res) => {
+    let result = await updateCocktailPrice(req.body.cname, req.body.preis);
     res.status(result.status).json(result.data);
   }),
 );

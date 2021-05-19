@@ -67,4 +67,20 @@ async function addCocktail(name, preis, zubereitung, kateg, zubereitB, servierun
   };
 }
 
-module.exports = { getCocktailPrice, getCocktailIng, getCocktailPriceLower, removeCocktail, addCocktail };
+async function updateCocktailPrice(name, preis) {
+  let res = await db.query('UPDATE cocktail set preis = $1 where cname = $2 returning preis', [preis, name]);
+
+  return {
+    status: 200,
+    data: 'Updated to  ' + res.rows[0].preis,
+  };
+}
+
+module.exports = {
+  getCocktailPrice,
+  getCocktailIng,
+  getCocktailPriceLower,
+  removeCocktail,
+  addCocktail,
+  updateCocktailPrice,
+};
