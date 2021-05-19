@@ -7,7 +7,7 @@ router.get(
   '/cocktails',
   asyncHandler(async (req, res) => {
     let result = await getCocktailPrice();
-    res.status(result.code).json(result.data);
+    res.status(result.status).json(result.data);
   }),
 );
 
