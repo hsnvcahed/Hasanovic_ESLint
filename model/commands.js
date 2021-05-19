@@ -55,4 +55,16 @@ async function removeCocktail(name) {
   };
 }
 
-module.exports = { getCocktailPrice, getCocktailIng, getCocktailPriceLower, removeCocktail };
+async function addCocktail(name, preis, zubereitung, kateg, zubereitB, servierung) {
+  let res = await db.query(
+    'Insert into cocktail(cname, preis, zubereitung, kid, zgid, sgid) VALUES ($1,$2,$3,$4,$5,$6) returning cid;',
+    [name, preis, zubereitung, kateg, zubereitB, servierung],
+  );
+
+  return {
+    status: 200,
+    data: 'Inserted ' + res.rows[0].cid,
+  };
+}
+
+module.exports = { getCocktailPrice, getCocktailIng, getCocktailPriceLower, removeCocktail, addCocktail };
